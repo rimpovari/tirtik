@@ -3,7 +3,8 @@
 ## Proje Durumu
 - Çekirdek altyapı (data_loader, order_simulator, excel_exporter) tamamlandı.
 - S01_ICT_Breaker stratejisi kodlandı ve XAUUSD üzerinde doğrulandı.
-- Sonraki adım: 30 parite × çoklu zaman dilimi seti × çoklu RR değeri.
+- Sonraki adım: 6 ana parite × çoklu zaman dilimi seti × çoklu RR değeri.
+- Strateji keskinleştikten sonra 30 pariteye genişlenecek (bkz. `data/pariteler_tam_liste.txt`).
 
 ---
 
@@ -14,7 +15,7 @@ tirtik/
 ├── data/                              # MT5'ten çekilen parquet dosyaları
 │   ├── XAUUSD_H1.parquet
 │   ├── EURUSD_D1.parquet
-│   └── ...  (30 parite × 5 zaman dilimi = 150 dosya)
+│   └── ...  (6 ana parite × 5 zaman dilimi = 30 dosya)
 ├── core/
 │   ├── data_loader.py
 │   ├── order_simulator.py
@@ -23,7 +24,7 @@ tirtik/
 │   └── S01_ICT_Breaker/
 │       ├── strateji.md
 │       ├── backtest.py               # Tek sembol / tek parametre seti (CLI)
-│       ├── run_all.py                # 30 parite × tüm TF seti × tüm RR -> Excel
+│       ├── run_all.py                # 6 parite × tüm TF seti × tüm RR -> Excel
 │       └── results/
 │           ├── XAUUSD.xlsx           # Her parite: 1 dosya, ayrı sayfa/parametre
 │           ├── EURUSD.xlsx
@@ -36,40 +37,18 @@ tirtik/
 
 ---
 
-## 30 Parite
+## 6 Ana Parite (Geliştirme Aşaması)
 
-| # | Sembol   | Kategori       |
-|---|----------|----------------|
-| 1  | EURUSD  | Major Forex    |
-| 2  | GBPUSD  | Major Forex    |
-| 3  | USDJPY  | Major Forex    |
-| 4  | USDCHF  | Major Forex    |
-| 5  | USDCAD  | Major Forex    |
-| 6  | AUDUSD  | Major Forex    |
-| 7  | NZDUSD  | Major Forex    |
-| 8  | XAUUSD  | Metal          |
-| 9  | XAGUSD  | Metal          |
-| 10 | EURGBP  | EUR Cross      |
-| 11 | EURJPY  | EUR Cross      |
-| 12 | EURCAD  | EUR Cross      |
-| 13 | EURCHF  | EUR Cross      |
-| 14 | EURAUD  | EUR Cross      |
-| 15 | EURNZD  | EUR Cross      |
-| 16 | GBPJPY  | GBP Cross      |
-| 17 | GBPCHF  | GBP Cross      |
-| 18 | GBPCAD  | GBP Cross      |
-| 19 | GBPAUD  | GBP Cross      |
-| 20 | GBPNZD  | GBP Cross      |
-| 21 | AUDJPY  | AUD Cross      |
-| 22 | AUDNZD  | AUD Cross      |
-| 23 | AUDCAD  | AUD Cross      |
-| 24 | AUDCHF  | AUD Cross      |
-| 25 | CADJPY  | CAD Cross      |
-| 26 | CADCHF  | CAD Cross      |
-| 27 | CHFJPY  | CHF Cross      |
-| 28 | NZDJPY  | NZD Cross      |
-| 29 | NZDCAD  | NZD Cross      |
-| 30 | NZDCHF  | NZD Cross      |
+> Strateji keskinleştikten sonra 30 pariteye geçilecek. Tam liste: `data/pariteler_tam_liste.txt`
+
+| # | Sembol  | Kategori    | Seçilme Nedeni                          |
+|---|---------|-------------|-----------------------------------------|
+| 1 | EURUSD  | Major Forex | En likit, dar spread, referans parite   |
+| 2 | GBPUSD  | Major Forex | Volatil, ICT için ideal hareket         |
+| 3 | USDJPY  | Major Forex | Trend odaklı, temiz yapı                |
+| 4 | XAUUSD  | Metal       | Yüksek volatilite, güçlü OB reaksiyonu |
+| 5 | EURGBP  | EUR Cross   | EUR ve GBP'yi birlikte gözlemler        |
+| 6 | GBPJPY  | GBP Cross   | Hızlı hareket, keskin Breaker setupleri |
 
 ---
 
@@ -99,7 +78,8 @@ tirtik/
 | 4 | 5.0    | 1R risk → 5R ödül               |
 | 5 | 6.0    | 1R risk → 6R ödül               |
 
-**Toplam kombinasyon:** 30 parite × 7 TF seti × 5 RR = **1.050 backtest**
+**Toplam kombinasyon:** 6 parite × 7 TF seti × 5 RR = **210 backtest**
+*(Tam liste ile: 30 × 7 × 5 = 1.050 backtest)*
 
 ---
 
@@ -130,8 +110,8 @@ tirtik/
 
 - [x] **Aşama 1**: Çekirdek altyapı (`core/` modülleri)
 - [x] **Aşama 2**: Strateji kodu (`S01_ICT_Breaker/backtest.py`) ve doğrulama
-- [ ] **Aşama 3**: 30 parite için veri çekimi (`scripts/fetch_historical_data.py`)
-- [ ] **Aşama 4**: Çoklu parametre testi (`run_all.py`) — 1050 kombinasyon
+- [ ] **Aşama 3**: 6 ana parite için veri çekimi (`scripts/fetch_historical_data.py`)
+- [ ] **Aşama 4**: Çoklu parametre testi (`run_all.py`) — 210 kombinasyon
 - [ ] **Aşama 5**: Sonuç analizi ve en iyi parametrelerin belirlenmesi
 
 ---

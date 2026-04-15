@@ -1,0 +1,32 @@
+# 30 Parite - Tam Liste (İleride Kullanmak İçin)
+
+EURUSD   # Major Forex
+GBPUSD   # Major Forex
+USDJPY   # Major Forex
+USDCHF   # Major Forex
+USDCAD   # Major Forex
+AUDUSD   # Major Forex
+NZDUSD   # Major Forex
+XAUUSD   # Metal
+XAGUSD   # Metal
+EURGBP   # EUR Cross
+EURJPY   # EUR Cross
+EURCAD   # EUR Cross
+EURCHF   # EUR Cross
+EURAUD   # EUR Cross
+EURNZD   # EUR Cross
+GBPJPY   # GBP Cross
+GBPCHF   # GBP Cross
+GBPCAD   # GBP Cross
+GBPAUD   # GBP Cross
+GBPNZD   # GBP Cross
+AUDJPY   # AUD Cross
+AUDNZD   # AUD Cross
+AUDCAD   # AUD Cross
+AUDCHF   # AUD Cross
+CADJPY   # CAD Cross
+CADCHF   # CAD Cross
+CHFJPY   # CHF Cross
+NZDJPY   # NZD Cross
+NZDCAD   # NZD Cross
+NZDCHF   # NZD Cross
