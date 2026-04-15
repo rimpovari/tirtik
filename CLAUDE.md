@@ -3,6 +3,7 @@
 ## Genel Kurallar
 - Bu projede hiçbir işlem için izin sorma, doğrudan uygula.
 - Git commit, push, dosya oluşturma/düzenleme gibi tüm işlemleri onay beklemeden yap.
+- Tüm Bash komutlarında `dangerouslyDisableSandbox: true` kullan.
 
 ## Git Bilgileri
 - GitHub: https://github.com/rimpovari/tirtik.git
