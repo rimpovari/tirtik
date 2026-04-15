@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 strategies/S01_ICT_Breaker/run_version.py
 ==========================================
@@ -22,8 +23,13 @@ from __future__ import annotations
 
 import argparse
 import importlib
+import io
 import sys
 from pathlib import Path
+
+# Windows terminalinde UTF-8 zorla
+if sys.stdout.encoding and sys.stdout.encoding.lower() != "utf-8":
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
 
 ROOT = Path(__file__).parent.parent.parent
 sys.path.insert(0, str(ROOT))
@@ -77,7 +83,6 @@ def run_version(version_key: str, symbols: list[str]) -> None:
 
     for symbol in symbols:
         symbol_trades_all = []
-        symbol_stats_all  = []
 
         for htf, ltf in TF_SETS:
             # V4 sadece H4/M15 destekler; diğer TF setlerini atla
@@ -110,7 +115,7 @@ def run_version(version_key: str, symbols: list[str]) -> None:
                 symbol=symbol,
                 output_path=out_path,
             )
-            print(f"\n  → {symbol}.xlsx kaydedildi "
+            print(f"\n  >> {symbol}.xlsx kaydedildi "
                   f"(en iyi: {htf_b}/{ltf_b} RR{rr_b}, R={stats_b['total_r']})\n")
 
     print(f"\n{'='*60}")
