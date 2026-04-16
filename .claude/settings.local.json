@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python strategies/S02_Day_Candle_Catch/backtest.py --symbol XAUUSD --ltf H1)",
+      "Bash(python scripts/fetch_historical_data.py)",
+      "Bash(PYTHONUTF8=1 python scripts/fetch_historical_data.py)",
+      "Bash(PYTHONUTF8=1 python strategies/S02_Day_Candle_Catch/run_all.py)",
+      "Bash(git add *)",
+      "Bash(git add .)",
+      "Bash(git commit*)",
+      "Bash(git push*)",
+      "Bash(git pull*)",
+      "Bash(git status*)"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"c:/Users/ramazan aydemir/Desktop/tirtik\" && git add -A && git diff --cached --quiet || (git commit -m \"auto: guncelleme $(date +%Y-%m-%d_%H-%M-%S)\" && git push)"
+          }
+        ]
+      }
+    ]
+  }
+}

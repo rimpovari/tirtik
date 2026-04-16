@@ -26,11 +26,9 @@ env/
 Thumbs.db
 desktop.ini
 
-# Data files (büyük dosyalar - isteğe bağlı)
-data/*.csv
-data/*.xlsx
-data/*.parquet
-data/*.h5
+# Data files (büyük dosyalar - MT5'ten çekilir, git'e eklenmez)
+data/
+
 
 # Logs
 *.log
